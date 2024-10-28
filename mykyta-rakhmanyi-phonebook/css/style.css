@@ -1,0 +1,21 @@
+.add-btn {
+  bottom: 2rem;
+  right: 7rem;
+  width: 4rem;
+  height: 4rem;
+}
+
+.avatar-preview {
+  height: 10rem;
+  display: none;
+}
+
+.avatar-preview--uploaded {
+  display: block;
+}
+
+.avatar-preview > img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
