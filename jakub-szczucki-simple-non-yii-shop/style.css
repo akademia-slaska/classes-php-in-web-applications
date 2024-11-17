@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.login-container, .table-container, .store-selection-container, .form-container {
+    background-color: #e0f7fa;
+    padding: 20px;
+    padding-bottom: 60px; /* zwiększ przestrzeń na dolną część kontenera */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    width: auto;
+}
+
+.login-container {
+    width: 300px;
+}
+
+.login-container h2, .table-container h2, .store-selection-container h2, .form-container h2 {
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="password"], input[type="number"], select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+input[type="submit"], .add-button, .delete-button, .back-button, .logout-button {
+    background-color: #0288d1;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover, .add-button:hover, .delete-button:hover, .back-button:hover, .logout-button:hover {
+    background-color: #0277bd;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+th {
+    background-color: #0288d1;
+    color: white;
+}
+
+.store-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.store-box {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+}
+
+.store-box h3 {
+    margin: 0;
+    margin-bottom: 10px;
+    color: #0288d1;
+}
+
+.store-box p {
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.add-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.logout-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 20px;
+}
