@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Kolorów Rezystorów</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('tlo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            width: 90%;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 500px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            margin: 20px;
+            flex: 1;
+            font-size: 18px;
+        }
+
+        #last-results {
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            margin: 20px;
+            overflow: visible;
+            flex: 1;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        select, input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        @media (max-width: 768px) {
+            .wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .container, #last-results {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="container">
+        <h2>Kalkulator Kolorów Rezystorów</h2>
+        <p>Wybierz kolory pasków:</p>
+
+        <label for="band1">Pierwszy pasek:</label>
+        <select id="band1">
+            <option value="0">Czarny</option>
+            <option value="1">Brązowy</option>
+            <option value="2">Czerwony</option>
+            <option value="3">Pomarańczowy</option>
+            <option value="4">Żółty</option>
+            <option value="5">Zielony</option>
+            <option value="6">Niebieski</option>
+            <option value="7">Fioletowy</option>
+            <option value="8">Szary</option>
+            <option value="9">Biały</option>
+        </select>
+
+        <label for="band2">Drugi pasek:</label>
+        <select id="band2">
+            <option value="0">Czarny</option>
+            <option value="1">Brązowy</option>
+            <option value="2">Czerwony</option>
+            <option value="3">Pomarańczowy</option>
+            <option value="4">Żółty</option>
+            <option value="5">Zielony</option>
+            <option value="6">Niebieski</option>
+            <option value="7">Fioletowy</option>
+            <option value="8">Szary</option>
+            <option value="9">Biały</option>
+        </select>
+
+        <label for="multiplier">Mnożnik:</label>
+        <select id="multiplier">
+            <option value="1">Czarny (x1)</option>
+            <option value="10">Brązowy (x10)</option>
+            <option value="100">Czerwony (x100)</option>
+            <option value="1000">Pomarańczowy (x1k)</option>
+            <option value="10000">Żółty (x10k)</option>
+            <option value="100000">Zielony (x100k)</option>
+            <option value="1000000">Niebieski (x1M)</option>
+            <option value="10000000">Fioletowy (x10M)</option>
+            <option value="0.1">Złoty (x0.1)</option>
+            <option value="0.01">Srebrny (x0.01)</option>
+        </select>
+
+        <label for="tolerance">Tolerancja:</label>
+        <select id="tolerance">
+            <option value="5">Złoty (±5%)</option>
+            <option value="10">Srebrny (±10%)</option>
+            <option value="1">Brązowy (±1%)</option>
+            <option value="2">Czerwony (±2%)</option>
+            <option value="0.5">Zielony (±0.5%)</option>
+            <option value="0.25">Niebieski (±0.25%)</option>
+            <option value="0.1">Fioletowy (±0.1%)</option>
+            <option value="0.05">Szary (±0.05%)</option>
+        </select>
+
+        <button onclick="calculateResistance()">Oblicz</button>
+        <h3>Wynik: <span id="result">0 Ω</span></h3>
+    </div>
+
+    <div id="last-results">
+        <h3>Ostatnie 5 wyników:</h3>
+        <div id="results-list"></div>
+    </div>
+</div>
+
+<script>
+    const colorsBand = {
+        0: "Czarny",
+        1: "Brązowy",
+        2: "Czerwony",
+        3: "Pomarańczowy",
+        4: "Żółty",
+        5: "Zielony",
+        6: "Niebieski",
+        7: "Fioletowy",
+        8: "Szary",
+        9: "Biały"
+    };
+
+    const colorsMultiplier = {
+        1: "Czarny",
+        10: "Brązowy",
+        100: "Czerwony",
+        1000: "Pomarańczowy",
+        10000: "Żółty",
+        100000: "Zielony",
+        1000000: "Niebieski",
+        10000000: "Fioletowy",
+        "0.1": "Złoty",
+        "0.01": "Srebrny"
+    };
+
+    function calculateResistance() {
+        const band1 = parseInt(document.getElementById("band1").value);
+        const band2 = parseInt(document.getElementById("band2").value);
+        const multiplier = parseFloat(document.getElementById("multiplier").value);
+        const tolerance = parseFloat(document.getElementById("tolerance").value);
+
+        const resistanceValue = ((band1 * 10) + band2) * multiplier;
+        const resultText = `${resistanceValue} Ω ±${tolerance}%`;
+
+        document.getElementById("result").innerText = resultText;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "php.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                updateResults();
+            }
+        };
+        xhr.send(`band1=${band1}&band2=${band2}&multiplier=${multiplier}&tolerance=${tolerance}&result=${encodeURIComponent(resultText)}`);
+    }
+
+    function updateResults() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "php.php?action=get_results", true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                const data = JSON.parse(xhr.responseText);
+                displayResults(data);
+            }
+        };
+        xhr.send();
+    }
+
+    function displayResults(results) {
+        const resultsList = document.getElementById("results-list");
+        let tableHTML = `
+            <table>
+                <tr>
+                    <th>Pierwszy pasek</th>
+                    <th>Drugi pasek</th>
+                    <th>Mnożnik</th>
+                    <th>Wynik</th>
+                    <th>Czas</th>
+                </tr>
+        `;
+
+        results.forEach(item => {
+            const band1Color = colorsBand[item.band1];
+            const band2Color = colorsBand[item.band2];
+            const multiplierColor = colorsMultiplier[item.multiplier.toString()] || "Nieznany";
+
+            tableHTML += `
+                <tr>
+                    <td>${band1Color}</td>
+                    <td>${band2Color}</td>
+                    <td>${multiplierColor}</td>
+                    <td>${item.result}</td>
+                    <td>${item.timestamp}</td>
+                </tr>
+            `;
+        });
+
+        tableHTML += `</table>`;
+        resultsList.innerHTML = tableHTML;
+    }
+
+    setInterval(updateResults, 5000);
+    window.onload = updateResults;
+</script>
+</body>
+</html>
