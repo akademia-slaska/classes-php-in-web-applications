@@ -1,0 +1,222 @@
+body, html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #717977;
+    height: 100%;
+}
+
+.navbar {
+    background: #a5b44f;
+    color: #717977;
+    padding: 1rem 0;
+}
+
+    .navbar .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+    .navbar .logo {
+        color: #f5f6f0;
+        font-size: 2rem;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .navbar .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+
+
+    }
+
+    .navbar .panel {
+        display: flex;
+        list-style: none;
+    }
+
+        .navbar .panel a {
+            text-decoration: underline;
+            color: #a60c0c;
+            margin-right: 2rem;
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: underline;
+            transition: color 0.3s;
+            margin-right: 1rem;
+        }
+
+            .navbar .nav-links a:hover {
+                color: #0707ef;
+            }
+
+.hero {
+    flex: 1;
+    color: #a5b44f;
+    text-align: center;
+    padding: 20px;
+}
+
+    .hero div {
+        width: 100%; /* Upewniamy się, że kontener ma pełną szerokość */
+        max-width: 300px; /* Możesz ustawić maksymalną szerokość */
+        margin-bottom: 20px;
+        text-align: center;
+}
+
+    .hero .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .hero .btn {
+        background: #a5b44f;
+        color: #fff;
+        padding: 0.8rem 2rem;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        margin-top: 1rem;
+        display: inline-block;
+    }
+
+        .hero .btn:hover {
+            background: #a5b44f;
+        }
+
+h2 {
+    font-size: 36px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form .registerbutton {
+    background: #a5b44f;
+}
+
+form .loginbutton {
+    background: #a5b44f;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.listing-container {
+    width: auto;
+    height: auto;
+    overflow: visible;
+}
+
+.listing-container img {
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+footer {
+    background: #0c0c0c;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+footer .container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #717977;
+}
+
+
+.left-panel {
+    flex: 1;
+    max-width: 30%;
+    background: #e4e4e4;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+
+.add-button {
+    display: flex;
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.add-button:hover {
+    background-color: #45a049;
+}
+
+
+.right-panel {
+    flex: 2;
+    max-width: 65%;
+    background: #e4e4e4;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.ogloszenie-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.ogloszenie-item h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.ogloszenie-item p {
+    margin: 10px 0;
+    color: #666;
+}
+
+/* Linki i przyciski */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    cursor: pointer;
+}
